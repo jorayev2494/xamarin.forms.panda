@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Panda.Views.Addreses.CreateAddressView"
+             Shell.BackgroundColor="{ StaticResource Key=BackgroundColor }">
+    
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, *" Padding="15, 0" BackgroundColor="Red">
+            <ScrollView Grid.Row="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Never" BackgroundColor="Yellow">
+                <StackLayout Orientation="Vertical" Padding="0, 0, 0, 58" Spacing="20">
+                    <Label Text="Cart" FontSize="35" />
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Name" FontSize="Body" />
+                        <Entry Placeholder="Name" TextColor="Black" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Address street" FontSize="Body" />
+                        <Entry Placeholder="Address street" TextColor="Black" />
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Address lane" FontSize="Body" />
+                        <Entry Placeholder="Address lane" TextColor="Black" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Postal code" FontSize="Body" />
+                        <Entry Placeholder="Postal code" TextColor="Black" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Phone number" FontSize="Body" />
+                        <Entry Placeholder="Phone number" TextColor="Black" Keyboard="Numeric" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+            <Button Grid.Row="1" Text="Add Address" TextColor="White" VerticalOptions="End" />
+        </Grid>
+    </ContentPage.Content>
+    
+</ContentPage>

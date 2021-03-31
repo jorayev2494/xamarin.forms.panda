@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Panda.Views.ShowView"
+             Shell.BackgroundColor="{ StaticResource Key=BackgroundColor }"
+             x:Name="body">
+
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, 18">
+            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                <!-- Image -->
+                <Frame Grid.Row="0" Margin="18" HeightRequest="210" HasShadow="False">
+                    <Image Grid.Row="0" 
+                       Aspect="AspectFill"
+                       Source="{ Binding Path=SelectedProduct.Images[0] }"
+                       HorizontalOptions="CenterAndExpand"
+                       WidthRequest="500" />
+                </Frame>
+                <!-- End Image -->
+
+                <!-- Title & Price -->
+                <StackLayout Grid.Row="1" Margin="18, 0">
+                    <Label Text="{ Binding Path=SelectedProduct.Title }" FontSize="Title" TextColor="Black" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0, 8">
+                        <Label Text="{ Binding Path=SelectedProduct.Price, StringFormat='${0}' }" 
+                           FontSize="25"
+                           TextColor="#667eea" />
+                        <Label Text="{ Binding Path=SelectedProduct.SalePrice, StringFormat='${0}' }" 
+                           TextDecorations="Strikethrough" 
+                           VerticalOptions="Center"
+                           FontSize="Subtitle" />
+                    </StackLayout>
+                </StackLayout>
+                <!-- End Title & Price -->
+
+                <!-- Rating & Reviews -->
+                <StackLayout Grid.Row="2" Margin="0, 10">
+                    <Line X1="400" Y1="0" X2="0" Y2="0" Stroke="Red" HorizontalOptions="Center" />
+                    <Grid ColumnDefinitions="Auto, *, Auto" Margin="18, 6">
+                        <Button Grid.Column="0"
+                            Text="4.5"
+                            WidthRequest="75"
+                            HeightRequest="40"
+                            BackgroundColor="#667eea" 
+                            CornerRadius="6" 
+                            FontSize="Title"
+                            TextColor="White"
+                            Padding="0" />
+
+                        <Label Grid.Column="1" 
+                           Text="Very Good"
+                           VerticalOptions="Center"
+                           FontSize="20"
+                           Margin="14, 0" />
+
+                        <Label Grid.Column="2"
+                           Text="49 Reviews"
+                           VerticalOptions="Center"
+                           TextColor="#667eea"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    </Grid>
+                    <Line X1="400" Y1="0" X2="0" Y2="0" Stroke="Red" HorizontalOptions="Center" />
+                </StackLayout>
+                <!-- End Rating & Reviews -->
+
+                <!-- Description -->
+                <Grid Grid.Row="3" RowDefinitions="Auto, Auto" Margin="18, 2, 18, 10">
+                    <Label Grid.Row="0" Text="Description" FontSize="Large" TextColor="Black" />
+                    <Label Grid.Row="1" LineBreakMode="MiddleTruncation">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{ Binding Path=SelectedProduct.Description, StringFormat='{0} ' }" />
+                                <Span Text="More" TextColor="#667eea" FontAttributes="Bold" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!-- End Description -->
+
+                <!-- Sizes -->
+                <StackLayout Grid.Row="4" Margin="0, 10" Spacing="16">
+                    <Line X1="400" Y1="0" X2="0" Y2="0" Stroke="Red" HorizontalOptions="Center" />
+                    <Label HorizontalOptions="Center"  Text="Select Size " FontAttributes="Bold" FontSize="20" />
+                    <Line X1="400" Y1="0" X2="0" Y2="0" Stroke="Red" HorizontalOptions="Center" />
+                </StackLayout>
+
+                <Grid Grid.Row="5" RowDefinitions="70" Margin="0, 20, 0, 0">
+                    <CollectionView ItemsSource="{ Binding Path=SelectedProduct.Sizes }" Margin="18, 0">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="Transparent">
+                                    <Button Text="{ Binding Path=Slug }"
+                                        TextTransform="Uppercase"
+                                        WidthRequest="70"
+                                        CornerRadius="4"
+                                        Margin="20, 0"
+                                        BackgroundColor="{ StaticResource Key=BackgroundColor }"
+                                        Command="{ Binding Source={ Reference Name=body }, Path=BindingContext.SizeSelectedCommand }"
+                                        CommandParameter="{ Binding Path=. }" />
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+                <!-- End Sizes -->
+
+                <!-- Sizes -->
+                <StackLayout Grid.Row="6" Margin="0, 10" Spacing="16">
+                    <Line X1="400" Y1="0" X2="0" Y2="0" Stroke="Red" HorizontalOptions="Center" />
+                    <Label HorizontalOptions="Center"  Text="Select Color " FontAttributes="Bold" FontSize="20" />
+                    <Line X1="400" Y1="0" X2="0" Y2="0" Stroke="Red" HorizontalOptions="Center" />
+                </StackLayout>
+
+                <Grid Grid.Row="7" RowDefinitions="40" Margin="0, 20, 0, 0">
+                    <CollectionView ItemsSource="{ Binding Path=SelectedProduct.Colors }" Margin="18, 0">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="Transparent">
+                                    <Button WidthRequest="40"
+                                        CornerRadius="50"
+                                        Margin="20, 0"
+                                        BackgroundColor="{ Binding Path=Slug }"
+                                        Command="{ Binding Source={ Reference Name=body }, Path=BindingContext.ColorSelectedCommand }"
+                                        CommandParameter="{ Binding Path=. }" />
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+                <!-- End Sizes -->
+
+                <!-- Btn Buy Now -->
+                <Button Grid.Row="8"
+                        Text="Buy now"
+                        CornerRadius="0"
+                        Margin="2, 50, 2, 0"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        BackgroundColor="#667eea"
+                        Command="{ Binding Path=BuyNowCommand }"
+                        CommandParameter="{ Binding Path=SelectedProduct }"/>
+                <!-- End Btn Buy Now -->
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

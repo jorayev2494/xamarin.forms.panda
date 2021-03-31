@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Panda.Views.Auth.LoginView"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, Auto, Auto" 
+              HeightRequest="440" 
+              VerticalOptions="Start"
+              Margin="0, 100"
+              Padding="25, 0">
+
+            <Label Grid.Row="0" Text="Login" FontSize="40" />
+
+            <StackLayout Grid.Row="1" Margin="0, 50, 0, 0" VerticalOptions="Start">
+                <!-- Email -->
+                <Label Text="Email" FontSize="Small" />
+                <Entry Text="{ Binding Path=Email }" Placeholder="Email" Keyboard="Email" />
+                <!-- Password -->
+                <Label Text="Password" FontSize="Small" Margin="0, 15, 0, 0" />
+                <Entry Text="{ Binding Path=Password }" Placeholder="Password" IsPassword="True" Keyboard="Default" />
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" Margin="0, 40, 0, 0">
+                <Button Text="Log in"
+                        TextTransform="None"
+                        FontSize="Subtitle"
+                        TextColor="White"
+                        Margin="0, 0"
+                        HorizontalOptions="Center"                        
+                        WidthRequest="350"
+                        Background="#6680eb"
+                        CornerRadius="5"
+                        Command="{ Binding Path=LoginCommand }" />
+
+                <Label VerticalOptions="Center" HorizontalOptions="Center" Margin="0, 20">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Don't have an acoount?  " />
+                            <Span Text="Sign Up" TextColor="Black">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{ Binding Path=RegisterCpmmand }" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

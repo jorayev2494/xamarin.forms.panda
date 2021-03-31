@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Panda.Views.FeaturedView"
+             Shell.NavBarHasShadow="False"
+             Shell.BackgroundColor="{ StaticResource Key=BackgroundColor }">
+    
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Never" BackgroundColor="Red" Padding="0">
+            <Grid RowDefinitions="Auto, *" Padding="15, 0" BackgroundColor="{ StaticResource Key=BackgroundColor }">
+                <Label Grid.Row="0" Text="Featured" FontSize="35" />
+
+                <FlexLayout Grid.Row="1"
+                        BindableLayout.ItemsSource="{ Binding Path=Products }"
+                        Direction="Row"
+                        Wrap="Wrap"
+                        Margin="0, 20, 0, 0">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="*, 50" Margin="8, 0" Padding="0, 0, 0, 15">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{ Binding Path=SelectedFeaturedCommand }" CommandParameter="{ Binding Path=. }" />
+                                </Grid.GestureRecognizers>
+                                <Frame CornerRadius="5" WidthRequest="180" HeightRequest="75" HasShadow="False">
+                                    <Image Source="{ Binding Path=Cover }" Aspect="AspectFill" WidthRequest="100" />
+                                </Frame>
+                                <StackLayout Grid.Row="1" Margin="0, 6, 0, 0">
+                                    <Label Text="{ Binding Path=Price, StringFormat='${0}' }" FontSize="Subtitle" />
+                                    <Label Text="{ Binding Path=Title }" FontSize="Subtitle" />
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Panda.Views.HomeView"
+             xmlns:local="clr-namespace:Panda"
+             Shell.BackgroundColor="{ StaticResource Key=BackgroundColor }"
+             BackgroundColor="Red"
+             Shell.NavBarHasShadow="False">
+
+
+    <!--<Shell.TitleView>
+        <ContentView>
+            
+            <StackLayout>
+                <Label Text="dadawd" BackgroundColor="Yellow" TextColor="Red" VerticalOptions="Center" HorizontalOptions="Center" />
+            </StackLayout>
+        </ContentView>
+    </Shell.TitleView>-->
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="filter" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Never" BackgroundColor="{ StaticResource Key=BackgroundColor }">
+            <Grid RowDefinitions="Auto, Auto, Auto, Auto">
+                <!-- Search -->
+                <Frame Grid.Row="0"
+                       Padding="-2"
+                       CornerRadius="6"
+                       BackgroundColor="White"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="18, 0, 18, 8"
+                       HasShadow="False">
+                    <SearchBar Placeholder="Search Your Product" HeightRequest="55" TextTransform="Default" Keyboard="Default" Margin="0" />
+                </Frame>
+                <!-- End Search -->
+
+                <!-- Categories -->
+                <StackLayout Grid.Row="1" Orientation="Vertical" Margin="0, 0, 0, 10">
+                    <Grid ColumnDefinitions="*, *" Margin="18, 0">
+                        <Label Grid.Column="0" 
+                               Text="Categories" 
+                               FontSize="25" 
+                               FontAttributes="None"
+                               HorizontalOptions="StartAndExpand" />
+                        <Label Grid.Column="1"
+                               Text="See all"
+                               TextColor="#656565"
+                               VerticalOptions="Center"
+                               HorizontalOptions="EndAndExpand" 
+                               FontSize="Small" />
+                    </Grid>
+                    <Grid RowDefinitions="75" Margin="0, 8, 0, 0">
+                        <CollectionView Grid.Row="0" ItemsSource="{ Binding Path=Categories }" ItemsLayout="HorizontalList">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BackgroundColor="Transparent" Padding="18, 0, 0, 0">
+                                        <Frame BackgroundColor="{ Binding Path=Color }"
+                                           WidthRequest="118"                                           
+                                           Margin="3, 0"
+                                           Padding="0"
+                                           CornerRadius="5">
+                                            <Grid>
+                                                <Image Source="{ Binding Path=Image }" Aspect="AspectFill" Opacity="0.4" />
+                                                <Label Text="{ Binding Path=Title }" 
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center"
+                                                   TextColor="White"
+                                                   FontAttributes="Bold" />
+                                            </Grid>
+                                        </Frame>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </StackLayout>
+                <!-- End Categories -->
+
+                <!-- Featired -->
+                <StackLayout Grid.Row="2" Orientation="Vertical">
+                    <Grid ColumnDefinitions="*, *" Margin="18, 0">
+                        <Label Grid.Column="0" 
+                            Text="Featured" 
+                            FontSize="22" 
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand" />
+                        <Label Grid.Column="1"
+                            Text="See all"
+                            TextColor="#656565"
+                            VerticalOptions="Center"
+                            HorizontalOptions="EndAndExpand" 
+                            FontSize="Small" />
+                    </Grid>
+
+                    <Grid RowDefinitions="255" VerticalOptions="Start">
+                        <CollectionView
+                            ItemsSource="{ Binding Path=Products }"
+                            ItemsLayout="HorizontalList"
+                            SelectionMode="Single"
+                            SelectionChanged="CollectionView_SelectionChanged">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Grid RowDefinitions="Auto, Auto" Padding="20, 2, 10, 0" HeightRequest="1">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup Name="CommonStates">
+                                                <VisualState Name="Normal" />
+                                                <VisualState Name="Selected">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="{ DynamicResource Key=BackgroundColor }" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Frame Grid.Row="0" CornerRadius="4" HasShadow="False" VerticalOptions="Start">
+                                            <Image 
+                                                Source="{ Binding Path=Cover }"
+                                                Aspect="AspectFill"
+                                                WidthRequest="160"
+                                                HeightRequest="200" />
+                                        </Frame>
+
+                                        <StackLayout Grid.Row="1" VerticalOptions="Start" Margin="0, 8">
+                                            <Label Text="{ Binding Path=Price, StringFormat='$ {0}' }" FontAttributes="Bold"/>
+                                            <Label Text="{ Binding Path=Title }" FontAttributes="Bold" />
+                                        </StackLayout>
+                                    </Grid>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </StackLayout>
+                <!-- End Featired -->
+
+                <!-- Best Sell -->
+                <StackLayout Grid.Row="3" Orientation="Vertical" Margin="0, 0, 0, 10">
+                    <Grid ColumnDefinitions="*, *" Margin="18, 0">
+                        <Label Grid.Column="0" 
+                                Text="Best Sell" 
+                                FontSize="22" 
+                                FontAttributes="Bold"
+                                HorizontalOptions="StartAndExpand" />
+                        <Label Grid.Column="1"
+                                Text="See all"
+                                TextColor="#656565"
+                                VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand" 
+                                FontSize="Small" />
+                    </Grid>
+
+                    <Grid RowDefinitions="255" VerticalOptions="Start">
+                        <CollectionView ItemsSource="{ Binding Path=Products }"
+                                        ItemsLayout="HorizontalList"
+                                        SelectionMode="Single"
+                                        SelectionChanged="CollectionView_SelectionChanged">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid RowDefinitions="Auto, Auto" Padding="20, 2, 10, 0">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup Name="CommonStates">
+                                                <VisualState Name="Normal" />
+                                                <VisualState Name="Selected">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="{ DynamicResource Key=BackgroundColor }" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Frame Grid.Row="0"
+                                                CornerRadius="4"
+                                                WidthRequest="160"
+                                                Padding="0"
+                                                HasShadow="False" >
+                                            <Image Source="{ Binding Path=Cover }"
+                                                    Aspect="AspectFill"
+                                                    WidthRequest="160"
+                                                    HeightRequest="200" />
+                                        </Frame>
+
+                                        <StackLayout Grid.Row="1"  VerticalOptions="Start" Margin="0, 8">
+                                            <Label Text="{ Binding Path=Price, StringFormat='$ {0}' }" FontAttributes="Bold"/>
+                                            <Label Text="{ Binding Path=Title }" FontAttributes="Bold" />
+                                        </StackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </StackLayout>
+                <!-- End Best Sell -->
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

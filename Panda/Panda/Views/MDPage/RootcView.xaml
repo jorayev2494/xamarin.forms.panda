@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Panda.Views.MDPage.RootcView"
+             xmlns:views="clr-namespace:Panda.Views"
+             xmlns:viewsAddreses="clr-namespace:Panda.Views.Addreses">
+
+    <FlyoutItem Title="Test">
+        <ShellContent Route="HomeView" ContentTemplate="{ DataTemplate views:HomeView }" Title="Home View" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Featured">
+        <ShellContent Route="FeaturedView" ContentTemplate="{ DataTemplate views:FeaturedView }" Title="Featured View" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Show">
+        <ShellContent Route="ShowView" ContentTemplate="{ DataTemplate views:ShowView }" Title="Show View" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Cart">
+        <ShellContent Route="CartView" ContentTemplate="{ DataTemplate views:CartView }" Title="Cart View" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Address">
+        <ShellContent Route="AddressView" ContentTemplate="{ DataTemplate viewsAddreses:AddressView }" Title="Address View" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Create Address">
+        <ShellContent Route="CreateAddressView" ContentTemplate="{ DataTemplate viewsAddreses:CreateAddressView }" Title="Create Address View" />
+    </FlyoutItem>
+    
+</Shell>

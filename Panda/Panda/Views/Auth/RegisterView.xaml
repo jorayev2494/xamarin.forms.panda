@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Panda.Views.Auth.RegisterView"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FormLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="Margin" Value="0, 15, 0, 0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, Auto, Auto" 
+              VerticalOptions="Start"
+              Margin="0, 40, 0, 0"
+              Padding="25, 0">
+
+            <Label Grid.Row="0" Text="Signup" FontSize="40" />
+
+            <StackLayout Grid.Row="1" Margin="0, 50, 0, 0" VerticalOptions="Start">
+                <Label Text="First Name" />
+                <Entry Text="{ Binding Path=FirstName }" Placeholder="First Name" Keyboard="Plain" />
+
+                <Label Text="Last Name" Style="{ StaticResource Key=FormLabelStyle }" />
+                <Entry Text="{ Binding Path=LastName }" Placeholder="Last Name" Keyboard="Text" />
+
+                <Label Text="Email" Style="{ StaticResource Key=FormLabelStyle }" />
+                <Entry Text="{ Binding Path=Email }" Placeholder="Email" Keyboard="Email" />
+
+                <Label Text="Password"  Style="{ StaticResource Key=FormLabelStyle }" />
+                <Entry Text="{ Binding Path=Password }" IsPassword="True" Placeholder="Password" Keyboard="Telephone" />
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" Margin="0, 40, 0, 0">
+                <Button Text="Sign Up"
+                        TextTransform="None"
+                        FontSize="Subtitle"
+                        TextColor="White"
+                        Margin="0, 0"
+                        HorizontalOptions="Center"                        
+                        WidthRequest="350"
+                        Background="#6680eb"
+                        CornerRadius="5" />
+
+                <Label VerticalOptions="Center" HorizontalOptions="Center" Margin="0, 20">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Already have an acoount ?  " />
+                            <Span Text="Sign in" TextColor="Black">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{ Binding Path=LoginCpmmand }" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ex8zoPQkUJwvROrvqv0+ZU9X7Kli0YGSeePUFdPRV+H95XR+uQkhaSFCKC3VfpWjryaa2sihVFK6kC9iz5sjgg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jorayev2494\\source\\repos\\xamarin.forms5\\Panda\\Panda\\Panda\\Panda.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\refractored.mvvmhelpers\\1.6.2\\refractored.mvvmhelpers.1.6.2.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
+  ],
+  "logs": []
+}
