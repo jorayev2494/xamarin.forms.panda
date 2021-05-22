@@ -22,8 +22,8 @@ namespace Panda.Views.Auth
 
         public LoginView()
         {
-            InitializeComponent();
             this.ViewModel = new LoginViewModel();
+            InitializeComponent();
         }
     }
 }

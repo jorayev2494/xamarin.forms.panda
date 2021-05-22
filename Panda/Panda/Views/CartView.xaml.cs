@@ -13,7 +13,6 @@ namespace Panda.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CartView : ContentPage
     {
-
         public CartViewModel ViewModel 
         { 
             get => base.BindingContext as CartViewModel;
@@ -26,9 +25,10 @@ namespace Panda.Views
             this.ViewModel = new CartViewModel();
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        protected override void OnAppearing()
         {
-
+            base.OnAppearing();
+            this.ViewModel.RefreshCart();
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QBnx7Iae5GXXritI14jpWT4GNyraJEEF/yYTMoKbYRnQzd5PJv+z58R0TkCBB9Bfxnj7yX+90TgDnvSUhSvMoQ==",
+  "dgSpecHash": "8AFqvfdD7Ap28rkVSXPkmut/NAUN2IZfy/HzQ9oSPY4PNz/oOEPWhAbjyR7NbRbyt/T8DSQ7Avvcn9oObn0//Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\jorayev2494\\source\\repos\\xamarin.forms5\\Panda\\Panda\\Panda.Android\\Panda.Android.csproj",
   "expectedPackageFiles": [
@@ -52,6 +52,7 @@
     "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.androidx.versionedparcelable\\1.1.1.6\\xamarin.androidx.versionedparcelable.1.1.1.6.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.androidx.viewpager\\1.0.0.6\\xamarin.androidx.viewpager.1.0.0.6.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.androidx.viewpager2\\1.0.0.8\\xamarin.androidx.viewpager2.1.0.0.8.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.communitytoolkit\\1.1.0\\xamarin.communitytoolkit.1.1.0.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.google.android.material\\1.2.1.1\\xamarin.google.android.material.1.2.1.1.nupkg.sha512",

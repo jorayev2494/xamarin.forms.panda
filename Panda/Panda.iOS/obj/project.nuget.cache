@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ch0KAybGh+Cgd+ceEHvZiIArjVL16BqO74SiOs3cZRZxRs8x8/T0Z3Pune6yCHkntnPw+27MNhrHr9+3zfiD5w==",
+  "dgSpecHash": "J6UWI8ST7dKkx3tLuLqp/fFjpnUyh80Gyn8rbPNAECLSL3M7nxZw+ibayKG++IygRb9GE9lxgDSkqVF1pyJf2A==",
   "success": true,
   "projectFilePath": "C:\\Users\\jorayev2494\\source\\repos\\xamarin.forms5\\Panda\\Panda\\Panda.iOS\\Panda.iOS.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\jorayev2494\\.nuget\\packages\\refractored.mvvmhelpers\\1.6.2\\refractored.mvvmhelpers.1.6.2.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.communitytoolkit\\1.1.0\\xamarin.communitytoolkit.1.1.0.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
   ],

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Panda.Views.PaymentView"
+             Shell.BackgroundColor="{ StaticResource Key=BackgroundColor }"
+             Shell.NavBarHasShadow="False">
+    
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, Auto" BackgroundColor="{ StaticResource Key=BackgroundColor }">
+            <ScrollView Grid.Row="0" Grid.RowSpan="1" VerticalScrollBarVisibility="Never">
+                <Grid RowDefinitions="Auto, 250, Auto" Padding="0, 0, 0, 58">
+                    <Label Grid.Row="0" Text="Payment" FontSize="35" Padding="15, 10, 15, 0" />
+
+                    <CollectionView Grid.Row="1" ItemsSource="{ Binding Path=Cards }" Margin="0, 20, 0, 40">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+
+                                <Frame Margin="10, 0, 10, 0" BackgroundColor="Transparent">
+                                    <Grid RowDefinitions="*">
+                                        <Image Grid.Row="0" Source="{ Binding Path=Image }" />
+                                        <Grid Grid.Row="0" RowDefinitions="*, *" Padding="31, 0, 0, 0">
+                                            <StackLayout Grid.Row="1">
+                                                <Label Text="{ Binding Path=Code }" FontSize="27" TextColor="White" />
+                                                <Label Text="{ Binding Path=ExpiresEnd }" TextColor="White" Margin="52, 7, 0, 0" FontSize="Small" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Grid>
+                                </Frame>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+                    <StackLayout Grid.Row="2" Spacing="5" Padding="15, 10, 15, 0">
+                        <!-- Subtotal -->
+                        <Grid ColumnDefinitions="*, *">
+                            <Label Grid.Column="0" Text="Subtotal" TextColor="#919191" />
+                            <Label Grid.Column="1" HorizontalOptions="End">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="$" />
+                                        <Span Text="160.00" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+                        <!-- End Subtotal -->
+
+                        <!-- Discount -->
+                        <Grid ColumnDefinitions="*, *">
+                            <Label Grid.Column="0" Text="Discount" TextColor="#919191" />
+                            <Label Grid.Column="1" HorizontalOptions="End">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="5" />
+                                        <Span Text="%" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+                        <!-- End Discount -->
+
+                        <!-- Shipping -->
+                        <Grid ColumnDefinitions="*, *">
+                            <Label Grid.Column="0" Text="Shipping" TextColor="#919191" />
+                            <Label Grid.Column="1" HorizontalOptions="End">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="$" />
+                                        <Span Text="10.00" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+                        <!-- End Shipping -->
+
+                        <!-- Hortizontal line -->
+                        <Line X1="400" Y1="0" X2="0" Y2="0" Stroke="#919191" HorizontalOptions="Center" Margin="0, 5, 0, 2" />
+                        <!-- End Hortizontal line -->
+
+                        <!-- Shipping -->
+                        <Grid ColumnDefinitions="*, *">
+                            <Label Grid.Column="0" Text="Total" />
+                            <Label Grid.Column="1" HorizontalOptions="End">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="$" />
+                                        <Span Text="162.00" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+                        <!-- End Shipping -->
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+
+            <StackLayout Grid.Row="1" VerticalOptions="End" Spacing="10" Padding="15, 10, 15, 0" Margin="0, 0, 0, 10">
+                <Button Text="+ Add Card"                    
+                        TextTransform="None"
+                        BackgroundColor="Transparent"
+                        BorderWidth="0.5"
+                        TextColor="#667eea"
+                        BorderColor="#788fed"
+                        Command="{ Binding Path=GoAddCardCommand }"/>
+
+                <Button Text="Checkout"
+                        VerticalOptions="End"
+                        TextTransform="None"
+                        Background="#659cf5"
+                        TextColor="White" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

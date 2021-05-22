@@ -4,14 +4,18 @@
              x:Class="Panda.Views.Addreses.AddressView"
              Shell.BackgroundColor="{ StaticResource Key=BackgroundColor }"
              Shell.NavBarHasShadow="False">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add address" Command="{ Binding Path=GoAddAddressCommand }" />
+    </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
         <Grid RowDefinitions="*, *" Padding="15, 0" BackgroundColor="{ StaticResource Key=BackgroundColor }">
             <ScrollView Grid.Row="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Never">
                 <StackLayout Orientation="Vertical" Padding="0, 0, 0, 58">
-                    <Label Text="Cart" FontSize="35" />
+                    <Label Text="Addresses" FontSize="35" />
 
-                    <CollectionView ItemsSource="{ Binding Path=Addreses }" Margin="0, 20, 0, 0">
+                    <CollectionView ItemsSource="{ Binding Path=Addresses }" Margin="0, 20, 0, 0">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
 
@@ -29,7 +33,12 @@
                                         </Label>
                                     </StackLayout>
 
-                                    <RadioButton Grid.Column="1" GroupName="address" />
+                                    <!--
+                                        <RadioButton Grid.Column="1" 
+                                                    GroupName="address" 
+                                                    Content="{ Binding Path=Name }" 
+                                                    CheckedChanged="RadioButton_CheckedChanged" />
+                                    -->
                                 </Grid>
 
                             </DataTemplate>
@@ -39,21 +48,23 @@
             </ScrollView>
 
             <StackLayout Grid.Row="1" VerticalOptions="End" Spacing="10" Margin="0, 0, 0, 10">
-                <Button
-                    Text="+ Add Address"                    
-                    TextTransform="None"
-                    BackgroundColor="Transparent"
-                    BorderWidth="0.5"
-                    TextColor="#667eea"
-                    BorderColor="#788fed" />
+                <!--
+                    <Button
+                        Text="+ Add Address"                    
+                        TextTransform="None"
+                        BackgroundColor="Transparent"
+                        BorderWidth="0.5"
+                        TextColor="#667eea"
+                        BorderColor="#788fed"
+                        Command="{ Binding Path=GoAddAddressCommand }"/>
+                -->
 
                 <Button Text="Continue To Payment"
                     VerticalOptions="End"
                     TextTransform="None"
                     Background="#659cf5"
                     TextColor="White" />
-            </StackLayout>
-            
+            </StackLayout>            
         </Grid>
     </ContentPage.Content>
     

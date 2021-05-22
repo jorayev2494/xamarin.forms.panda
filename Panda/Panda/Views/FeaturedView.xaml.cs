@@ -1,6 +1,7 @@
 ﻿using Panda.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,5 +26,12 @@ namespace Panda.Views
 			InitializeComponent();
 			this.ViewModel = new FeaturedViewModel();
 		}
-	}
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+			this.ViewModel.RefreshCart();
+			await this.ViewModel.SingletoneRefresh();
+		}
+    }
 }

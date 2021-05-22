@@ -1,4 +1,5 @@
 ﻿using Panda.Helpers;
+using Panda.Services.Authenticate;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,7 +19,9 @@ namespace Panda.Views.MDPage
         public RootcView()
         {
             this.FlyoutIsPresented = true;
-            
+            base.Title = Panda.Services.Authenticate.Auth.HasAccessToken() && Panda.Services.Authenticate.Auth.HasAuthUser() ? ":yes:" : ":no:";
+
+
             InitializeComponent();
         }
 

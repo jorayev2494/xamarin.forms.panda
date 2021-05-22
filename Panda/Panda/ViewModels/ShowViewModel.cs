@@ -1,5 +1,6 @@
 ﻿using MvvmHelpers;
 using Panda.Models;
+using Panda.Services.Shop;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,7 +11,7 @@ using Xamarin.Forms;
 
 namespace Panda.ViewModels
 {
-    public class ShowViewModel : BaseViewModel
+    public class ShowViewModel : CartService
     {
 
         public Product SelectedProduct { get; private set; }
@@ -28,40 +29,46 @@ namespace Panda.ViewModels
         public ICommand ColorSelectedCommand { get; private set; }
         public ICommand BuyNowCommand { get; private set; }
 
-        public ShowViewModel()
+        public ShowViewModel(Product model): base()
         {
+            this.SelectedProduct = model;
             this.SizeSelectedCommand = new Command<Models.Size>(async (Models.Size s) => await this.SelectedSize(s));
             this.ColorSelectedCommand = new Command<Models.Color>(async (Models.Color color) => await this.SelectedColor(color));
             this.BuyNowCommand = new Command<Product>(async (Product product) => await this.BuyNow(this.SelectedProduct));
-            
-            this.SelectedProduct = new Product()
-            {
-                Id = 1,
-                Title = "Woman T-Shirt File",
-                Price = 14.00d,
-                SalePrice = 13d,
-                Description = this.description,
-                Cover = ImageSource.FromFile("photo3.jpg"),
-                Images = this.images,
-                Sizes = new List<Models.Size>()
-                {
-                    new Models.Size() { Id = 1, Slug = "s", IsHave = true },
-                    new Models.Size() { Id = 2, Slug = "M", IsHave = true },
-                    new Models.Size() { Id = 3, Slug = "l", IsHave = true },
-                    new Models.Size() { Id = 4, Slug = "xxl", IsHave = false }
-                },
-                Colors = new List<Models.Color>()
-                {
-                    new Models.Color() { Id = 5, Slug = Xamarin.Forms.Color.FromHex("red"), IsHave = false },
-                    new Models.Color() { Id = 1, Slug = Xamarin.Forms.Color.FromHex("#667eea"), IsHave = true },
-                    new Models.Color() { Id = 2, Slug = Xamarin.Forms.Color.FromHex("#bebebe"), IsHave = true },
-                    new Models.Color() { Id = 3, Slug = Xamarin.Forms.Color.FromHex("yellow"), IsHave = false },
-                    new Models.Color() { Id = 4, Slug = Xamarin.Forms.Color.FromHex("green"), IsHave = true },
-                    new Models.Color() { Id = 5, Slug = Xamarin.Forms.Color.FromHex("blue"), IsHave = false },
-                    new Models.Color() { Id = 5, Slug = Xamarin.Forms.Color.FromHex("orange"), IsHave = false },
-                    new Models.Color() { Id = 5, Slug = Xamarin.Forms.Color.FromHex("black"), IsHave = false }
-                }
-            };
+
+            //NewMethod();
+        }
+
+        private void NewMethod()
+        {
+            //this.SelectedProduct = new Product()
+            //{
+            //    Id = 1,
+            //    Title = "Woman T-Shirt File",
+            //    Price = 14.00d,
+            //    SalePrice = 13d,
+            //    Description = this.description,
+            //    Cover = ImageSource.FromFile("photo3.jpg"),
+            //    Images = this.images,
+            //    Sizes = new List<Models.Size>()
+            //    {
+            //        new Models.Size() { Id = 1, Slug = "s", IsHave = true },
+            //        new Models.Size() { Id = 2, Slug = "M", IsHave = true },
+            //        new Models.Size() { Id = 3, Slug = "l", IsHave = true },
+            //        new Models.Size() { Id = 4, Slug = "xxl", IsHave = false }
+            //    },
+            //    Colors = new List<Models.Color>()
+            //    {
+            //        new Models.Color() { Id = 5, Slug = Xamarin.Forms.Color.FromHex("red"), IsHave = false },
+            //        new Models.Color() { Id = 1, Slug = Xamarin.Forms.Color.FromHex("#667eea"), IsHave = true },
+            //        new Models.Color() { Id = 2, Slug = Xamarin.Forms.Color.FromHex("#bebebe"), IsHave = true },
+            //        new Models.Color() { Id = 3, Slug = Xamarin.Forms.Color.FromHex("yellow"), IsHave = false },
+            //        new Models.Color() { Id = 4, Slug = Xamarin.Forms.Color.FromHex("green"), IsHave = true },
+            //        new Models.Color() { Id = 5, Slug = Xamarin.Forms.Color.FromHex("blue"), IsHave = false },
+            //        new Models.Color() { Id = 5, Slug = Xamarin.Forms.Color.FromHex("orange"), IsHave = false },
+            //        new Models.Color() { Id = 5, Slug = Xamarin.Forms.Color.FromHex("black"), IsHave = false }
+            //    }
+            //};
         }
 
         private async Task SelectedSize(Models.Size size)

@@ -21,10 +21,7 @@ namespace Panda.Models
         public double SalePrice { get; set; }
 
         [JsonProperty("cover")]
-        public ImageSource Cover { get; set; }
-
-        [JsonProperty("images")]
-        public IList<ImageSource> Images { get; set; }
+        public File Cover { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }
@@ -34,5 +31,14 @@ namespace Panda.Models
 
         [JsonProperty("colors")]
         public IList<Color> Colors { get; set; }
+
+        [JsonProperty("category")]
+        public Category Category { get; set; }
+
+        [JsonProperty("images")]
+        public File[] Images { get; set; }
+
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
     }
 }

@@ -15,7 +15,7 @@
             <Image Grid.Row="1" Source="welcome" Margin="20, 0" />
 
             <StackLayout Grid.Row="2">
-                <Button Text="Log in"
+                <Button Text="Вход"
                         TextTransform="None"
                         FontSize="Subtitle"
                         TextColor="White"
@@ -24,13 +24,11 @@
                         Background="#6680eb"
                         CornerRadius="5"
                         Command="{ Binding Path=GoToLoginViewCommand }" />
-                
-                <Label VerticalOptions="Center" HorizontalOptions="Center" Margin="0, 18">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Signup" FontSize="Medium" />
-                        </FormattedString>
-                    </Label.FormattedText>
+
+                <Label VerticalOptions="Center" Text="Зарегистрироваться" HorizontalOptions="Center" Margin="0, 20">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{ Binding Path=RegisterCpmmand }" />
+                    </Label.GestureRecognizers>
                 </Label>
             </StackLayout>
         </Grid>

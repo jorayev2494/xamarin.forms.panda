@@ -5,12 +5,6 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
         <Grid RowDefinitions="Auto, Auto, Auto" 
               HeightRequest="440" 
@@ -18,19 +12,19 @@
               Margin="0, 100"
               Padding="25, 0">
 
-            <Label Grid.Row="0" Text="Login" FontSize="40" />
+            <Label Grid.Row="0" Text="Войти" FontSize="35" />
 
             <StackLayout Grid.Row="1" Margin="0, 50, 0, 0" VerticalOptions="Start">
                 <!-- Email -->
-                <Label Text="Email" FontSize="Small" />
-                <Entry Text="{ Binding Path=Email }" Placeholder="Email" Keyboard="Email" />
+                <Label Text="E-mail" FontSize="Small" />
+                <Entry Text="{ Binding Path=Email }" Placeholder="E-mail" Keyboard="Email" />
                 <!-- Password -->
-                <Label Text="Password" FontSize="Small" Margin="0, 15, 0, 0" />
-                <Entry Text="{ Binding Path=Password }" Placeholder="Password" IsPassword="True" Keyboard="Default" />
+                <Label Text="Пароль" FontSize="Small" Margin="0, 15, 0, 0" />
+                <Entry Text="{ Binding Path=Password }" Placeholder="Пароль" IsPassword="True" Keyboard="Default" />
             </StackLayout>
 
             <StackLayout Grid.Row="2" Margin="0, 40, 0, 0">
-                <Button Text="Log in"
+                <Button Text="Войти"
                         TextTransform="None"
                         FontSize="Subtitle"
                         TextColor="White"
@@ -44,8 +38,8 @@
                 <Label VerticalOptions="Center" HorizontalOptions="Center" Margin="0, 20">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Don't have an acoount?  " />
-                            <Span Text="Sign Up" TextColor="Black">
+                            <Span Text="Нет учетной записи?  " />
+                            <Span Text="Зарегистрироваться" TextColor="Black">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer Command="{ Binding Path=RegisterCpmmand }" />
                                 </Span.GestureRecognizers>

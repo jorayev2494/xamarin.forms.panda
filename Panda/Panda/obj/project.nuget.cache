@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ex8zoPQkUJwvROrvqv0+ZU9X7Kli0YGSeePUFdPRV+H95XR+uQkhaSFCKC3VfpWjryaa2sihVFK6kC9iz5sjgg==",
+  "dgSpecHash": "askCHUFvarSVtrrGwYlL8MK5Dl/eEBLldH2DntUr4/VZZtJibPI3Vxy078CEmGseP+/EFryRKueju6wKu6stIA==",
   "success": true,
   "projectFilePath": "C:\\Users\\jorayev2494\\source\\repos\\xamarin.forms5\\Panda\\Panda\\Panda\\Panda.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,12 @@
     "C:\\Users\\jorayev2494\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\refractored.mvvmhelpers\\1.6.2\\refractored.mvvmhelpers.1.6.2.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.7.0\\system.reflection.emit.ilgeneration.4.7.0.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\system.reflection.emit.lightweight\\4.7.0\\system.reflection.emit.lightweight.4.7.0.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.3\\system.runtime.compilerservices.unsafe.4.5.3.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
+    "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.communitytoolkit\\1.1.0\\xamarin.communitytoolkit.1.1.0.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
     "C:\\Users\\jorayev2494\\.nuget\\packages\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
   ],

@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Panda.Views.CheckoutView"
+             Shell.BackgroundColor="{ StaticResource Key=BackgroundColor}"
+             Shell.NavBarHasShadow="False"
+             x:Name="body">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Addresses" Command="{ Binding Path=GoToAddressCommand }" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, 220, Auto, Auto, *" BackgroundColor="{ StaticResource Key=BackgroundColor }" Padding="15, 0, 15, 0">
+            <Label Grid.Row="0" Text="Checkout" FontSize="35" />
+            
+            <CollectionView Grid.Row="1" ItemsSource="{ Binding Path=Orders }">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="0" BackgroundColor="Transparent">
+                            <Grid ColumnDefinitions="*, Auto" BackgroundColor="#fff" Margin="0, 20, 0, -4" Padding="16" VerticalOptions="Start">
+                                <Grid Grid.Column="0" ColumnDefinitions="Auto, *" VerticalOptions="Center">
+                                    <Image Grid.Column="0"
+                                                WidthRequest="116"
+                                                HeightRequest="116"
+                                                Source="{ Binding Path=Product.Cover.GetUrl }"
+                                                VerticalOptions="Start"
+                                                Aspect="AspectFill"
+                                                Margin="0, 0, 20, 0" />
+
+                                    <StackLayout Grid.Column="1" VerticalOptions="Start">
+                                        <Label Text="{ Binding Path=Product.Title }" FontSize="Body" />
+                                        <Label Text="{ Binding Path=Product.Title }" FontSize="Body" TextColor="#b1b1b1" />
+                                        <Label Margin="0, 8" >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="{ Binding Path=Product.Price }" 
+                                                                        TextColor="#b1b1b1" 
+                                                                        FontSize="Body" />
+
+                                                        <Span Text=" X " TextColor="#b1b1b1" FontSize="Small" />
+                                                        <Span Text="{ Binding Path=Quantity }" 
+                                                                        TextColor="#b1b1b1" 
+                                                                        FontSize="Body" />
+                                                        <Span Text=" = " 
+                                                                        TextColor="#b1b1b1" 
+                                                                        FontSize="Body" />
+                                                        <Span Text="{ Binding Path=Price, StringFormat='${0}' }"
+                                                                    FontSize="Body"
+                                                                    TextColor="#6874ca" />
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Frame BackgroundColor="#f6f6f6" 
+                                                    HeightRequest="40"
+                                                    HorizontalOptions="Start"
+                                                    VerticalOptions="Start"
+                                                    Padding="0"
+                                                    HasShadow="False"
+                                                    CornerRadius="4">
+                                            <StackLayout Orientation="Horizontal" Spacing="4">
+                                                <Button Text="-"
+                                                            FontSize="Body"
+                                                            WidthRequest="40"
+                                                            FontAttributes="Bold"
+                                                            BackgroundColor="Transparent"
+                                                            Command="{ Binding Source={ Reference Name=body }, Path=BindingContext.ProductDecrementCommand }"
+                                                            CommandParameter="{ Binding Path=Product }" />
+                                                <Label Text="{ Binding Path=Quantity, Mode=TwoWay }"
+                                                            FontSize="Title"
+                                                            Padding="10, 0" 
+                                                            VerticalOptions="Center" />
+                                                <Button Text="+"
+                                                            FontSize="Body"
+                                                            WidthRequest="40"
+                                                            FontAttributes="Bold"
+                                                            BackgroundColor="Transparent"
+                                                            Command="{ Binding Source={ Reference Name=body }, Path=BindingContext.ProductIcrementCommand }"
+                                                            CommandParameter="{ Binding Path=Product }" />
+                                            </StackLayout>
+                                        </Frame>
+
+                                    </StackLayout>
+                                </Grid>
+
+                                <Label Grid.Column="1" Text="X" Margin="2, 0" VerticalOptions="Start">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{ Binding Source={ Reference Name=body }, Path=BindingContext.RemoveFromCartCommand }"
+                                            CommandParameter="{ Binding Path=Product }"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout Grid.Row="2" Orientation="Vertical" Margin="0, 10, 0, 0">
+                <Label Text="Sample address comes here" TextColor="#919191" />
+                <Picker Title="Address" ItemsSource="{ Binding Path=Addresses }" 
+                        ItemDisplayBinding="{ Binding Path=Name }" 
+                        SelectedIndexChanged="Picker_SelectedIndexChanged" />
+            </StackLayout>            
+            
+            <StackLayout Grid.Row="3" Spacing="5" Margin="0, 10, 0, 0">
+                <!-- Hortizontal line -->
+                <Line X1="400" Y1="0" X2="0" Y2="0" Stroke="#919191" HorizontalOptions="Center" />
+                <!-- End Hortizontal line -->
+
+                <!-- Quantity -->
+                <Grid ColumnDefinitions="*, *">
+                    <Label Grid.Column="0" Text="Quantity" TextColor="#919191" />
+                    <Label Grid.Column="1" HorizontalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{ Binding Path=QuantityOrders, Mode=TwoWay }" />
+                                <!-- <Span Text="%" /> -->
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!-- End Quantity -->
+
+                <!-- Subtotal -->
+                <Grid ColumnDefinitions="*, *">
+                    <Label Grid.Column="0" Text="Subtotal" TextColor="#919191" />
+                    <Label Grid.Column="1" HorizontalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="$" />
+                                <Span Text="{ Binding Path=Sum, StringFormat='{0:f}' }" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!-- End Subtotal -->
+
+                <!-- Shipping -->
+                <!--
+                <Grid ColumnDefinitions="*, *">
+                    <Label Grid.Column="0" Text="Shipping" TextColor="#919191" />
+                    <Label Grid.Column="1" HorizontalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="$" />
+                                <Span Text="10.00" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                -->
+                <!-- End Shipping -->
+
+                <!-- Hortizontal line -->
+                <Line X1="400" Y1="0" X2="0" Y2="0" Stroke="#919191" HorizontalOptions="Center" />
+                <!-- End Hortizontal line -->
+
+                <!-- Shipping -->
+                <Grid ColumnDefinitions="*, *">
+                    <Label Grid.Column="0" Text="Total" />
+                    <Label Grid.Column="1" HorizontalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="$" />
+                                <Span Text="{ Binding Path=Sum, StringFormat='{0:f}' }" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!-- End Shipping -->
+            </StackLayout>
+
+            <StackLayout Grid.Row="4" VerticalOptions="End" Spacing="10" Margin="0, 0, 0, 10">
+                <Button Text="Send Order"
+                        VerticalOptions="End"
+                        TextTransform="None"
+                        Background="#659cf5"
+                        TextColor="White"
+                        Command="{ Binding Path=SendOrderCommand }" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

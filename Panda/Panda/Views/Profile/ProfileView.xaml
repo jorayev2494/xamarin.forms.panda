@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Panda.Views.Profile.ProfileView">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout"
+                     Priority="1"
+                     Order="Primary"
+                     Command="{ Binding Path=LogoutCommand }"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, *" Padding="15, 0" BackgroundColor="{ StaticResource Key=BackgroundColor }">
+            <ScrollView Grid.Row="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Never">
+                <StackLayout Orientation="Vertical" Padding="0, 0, 0, 58" Spacing="20">
+                    <Label Text="Profile" FontSize="35" />
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="First name" FontSize="Body" />
+                        <Entry Text="{ Binding Path=FirstName, Mode=TwoWay }" Placeholder="First name" TextColor="Black" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Last name" FontSize="Body" />
+                        <Entry Text="{ Binding Path=LastName, Mode=TwoWay }" Placeholder="Last name" TextColor="Black" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Email" FontSize="Body" />
+                        <Entry Text="{ Binding Path=Email, Mode=TwoWay }" Placeholder="Email" TextColor="Black" />
+                    </StackLayout>
+
+                    <!-- https://stackoverflow.com/questions/45849856/xamarin-forms-picker-binding/45854313 -->
+                    <!-- <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Gender" FontSize="Body" />
+                        <Picker Title="Gender">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{ x:Type x:String }">
+                                    <x:String>Baboon</x:String>
+                                    <x:String>Capuchin Monkey</x:String>
+                                    <x:String>Blue Monkey</x:String>
+                                    <x:String>Squirrel Monkey</x:String>
+                                    <x:String>Golden Lion Tamarin</x:String>
+                                    <x:String>Howler Monkey</x:String>
+                                    <x:String>Japanese Macaque</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </StackLayout> -->
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Phone number" FontSize="Body" />
+                        <Entry Text="{ Binding Path=Phone, Mode=TwoWay }" TextColor="Black" Keyboard="Numeric" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+            <Button Grid.Row="1"
+                    Text="Update" 
+                    TextColor="White"
+                    TextTransform="None"
+                    VerticalOptions="End"
+                    Margin="0, 0, 0, 5"
+                    BackgroundColor="#659cf5"
+                    Command="{ Binding Path=UpdateProfileCommand }"/>
+        </Grid>
+    </ContentPage.Content>
+    
+</ContentPage>

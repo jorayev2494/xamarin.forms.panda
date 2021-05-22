@@ -22,8 +22,15 @@ namespace Panda.Views
 
         public HomeView()
         {
-            InitializeComponent();
             this.ViewModel = new HomeViewModel();
+            InitializeComponent();
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            this.ViewModel.RefreshCart();
+            await this.ViewModel.SingletoneRefresh();
         }
 
         private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs @event)

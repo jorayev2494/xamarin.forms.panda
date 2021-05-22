@@ -1,18 +1,21 @@
 ﻿using MvvmHelpers;
 using MvvmHelpers.Commands;
+using Panda.Services.Authenticate;
 using Panda.Views.Auth;
 using Panda.Views.MDPage;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Panda.ViewModels.Auth
 {
     public class LoginViewModel : BaseViewModel
     {
-        private string email = "jorayev2494@gmail.com";
-        private string password = "secret";
+        private string email = "user1@gmail.com";
+        private string password = "secret123_!";
 
         public string Email
         {
@@ -32,17 +35,27 @@ namespace Panda.ViewModels.Auth
         public LoginViewModel()
         {
             // Login Command
-            this.LoginCommand = new Command(() => 
-            {
-                App.Current.MainPage = new RootcView();
-                // await App.Current.MainPage.DisplayAlert("Login", $"Email: {this.email} \r\nPassword: {this.password}", "Ok");
-            });
+            this.LoginCommand = new Xamarin.Forms.Command(async () => await this.Login());
 
             // Register Command
-            this.RegisterCpmmand = new Command(async () =>
+            this.RegisterCpmmand = new Xamarin.Forms.Command(async () =>
             {
-                await App.Current.MainPage.Navigation.PushAsync(new RegisterView(), true);
+                await Application.Current.MainPage.Navigation.PushAsync(new RegisterView(), true);
             });
+        }
+
+        private async Task Login()
+        {
+            bool isLogined = await App.Authenticate.Login(new { email = this.email, password = this.password });
+
+            if (isLogined)
+            {
+                App.Current.MainPage = new RootcView();
+            } 
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Errorr", "errorr", "ok");
+            }
         }
     }
 }

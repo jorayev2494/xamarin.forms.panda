@@ -7,193 +7,213 @@
              BackgroundColor="Red"
              Shell.NavBarHasShadow="False">
 
-
-    <!--<Shell.TitleView>
+    <Shell.TitleView>
         <ContentView>
-            
-            <StackLayout>
-                <Label Text="dadawd" BackgroundColor="Yellow" TextColor="Red" VerticalOptions="Center" HorizontalOptions="Center" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End" Margin="10, 10">
+
+                <Grid ColumnDefinitions="*, Auto">
+                    <Image Grid.Column="0" Source="cart.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{ Binding Path=GoToCartCommand, Mode=TwoWay }" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Frame Grid.Column="1" 
+                           Padding="4, 1"
+                           VerticalOptions="Start"
+                           BackgroundColor="Black"
+                           CornerRadius="50">
+                        <Label Text="{ Binding Path=QuantityOrders, Mode=TwoWay }"
+                               TextColor="White"
+                               FontSize="Micro"
+                               FontAttributes="Bold" />
+                    </Frame>
+                </Grid>
+
             </StackLayout>
         </ContentView>
-    </Shell.TitleView>-->
+    </Shell.TitleView>
 
-
+    <!--
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="filter" />
-    </ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="cart" />
+    </ContentPage.ToolbarItems
+    -->
 
     <ContentPage.Content>
-        <ScrollView VerticalScrollBarVisibility="Never" BackgroundColor="{ StaticResource Key=BackgroundColor }">
-            <Grid RowDefinitions="Auto, Auto, Auto, Auto">
-                <!-- Search -->
-                <Frame Grid.Row="0"
+        <RefreshView IsRefreshing="{ Binding Path=IsBusy, Mode=TwoWay }" Command="{ Binding Path=RefreshCommand }">
+            <ScrollView VerticalScrollBarVisibility="Never" BackgroundColor="{ StaticResource Key=BackgroundColor }">
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto">
+                    <!-- Search -->
+                    <Frame Grid.Row="0"
                        Padding="-2"
                        CornerRadius="6"
                        BackgroundColor="White"
                        VerticalOptions="CenterAndExpand"
                        Margin="18, 0, 18, 8"
                        HasShadow="False">
-                    <SearchBar Placeholder="Search Your Product" HeightRequest="55" TextTransform="Default" Keyboard="Default" Margin="0" />
-                </Frame>
-                <!-- End Search -->
+                        <SearchBar Placeholder="Search Your Product" HeightRequest="55" TextTransform="Default" Keyboard="Default" Margin="0" />
+                    </Frame>
+                    <!-- End Search -->
 
-                <!-- Categories -->
-                <StackLayout Grid.Row="1" Orientation="Vertical" Margin="0, 0, 0, 10">
-                    <Grid ColumnDefinitions="*, *" Margin="18, 0">
-                        <Label Grid.Column="0" 
+                    <!-- Categories -->
+                    <StackLayout Grid.Row="1" Orientation="Vertical" Margin="0, 0, 0, 10">
+                        <Grid ColumnDefinitions="*, *" Margin="18, 0">
+                            <Label Grid.Column="0" 
                                Text="Categories" 
                                FontSize="25" 
                                FontAttributes="None"
                                HorizontalOptions="StartAndExpand" />
-                        <Label Grid.Column="1"
+                            <Label Grid.Column="1"
                                Text="See all"
                                TextColor="#656565"
                                VerticalOptions="Center"
                                HorizontalOptions="EndAndExpand" 
                                FontSize="Small" />
-                    </Grid>
-                    <Grid RowDefinitions="75" Margin="0, 8, 0, 0">
-                        <CollectionView Grid.Row="0" ItemsSource="{ Binding Path=Categories }" ItemsLayout="HorizontalList">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Frame BackgroundColor="Transparent" Padding="18, 0, 0, 0">
-                                        <Frame BackgroundColor="{ Binding Path=Color }"
+                        </Grid>
+                        <Grid RowDefinitions="75" Margin="0, 8, 0, 0">
+                            <CollectionView Grid.Row="0" ItemsSource="{ Binding Path=Categories }" ItemsLayout="HorizontalList">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame BackgroundColor="Transparent" Padding="18, 0, 0, 0">
+                                            <Frame BackgroundColor="{ Binding Path=Color }"
                                            WidthRequest="118"                                           
                                            Margin="3, 0"
                                            Padding="0"
                                            CornerRadius="5">
-                                            <Grid>
-                                                <Image Source="{ Binding Path=Image }" Aspect="AspectFill" Opacity="0.4" />
-                                                <Label Text="{ Binding Path=Title }" 
-                                                   VerticalOptions="Center"
-                                                   HorizontalOptions="Center"
-                                                   TextColor="White"
-                                                   FontAttributes="Bold" />
-                                            </Grid>
+                                                <Grid>
+                                                    <Image Source="{ Binding Path=GetImage }" Aspect="AspectFill" Opacity="0.4" />
+                                                    <Label Text="{ Binding Path=Slug }" 
+                                                       VerticalOptions="Center"
+                                                       HorizontalOptions="Center"
+                                                       TextColor="White"
+                                                       FontAttributes="Bold" />
+                                                </Grid>
+                                            </Frame>
                                         </Frame>
-                                    </Frame>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </Grid>
-                </StackLayout>
-                <!-- End Categories -->
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </StackLayout>
+                    <!-- End Categories -->
 
-                <!-- Featired -->
-                <StackLayout Grid.Row="2" Orientation="Vertical">
-                    <Grid ColumnDefinitions="*, *" Margin="18, 0">
-                        <Label Grid.Column="0" 
+                    <!-- Featired -->
+                    <StackLayout Grid.Row="2" Orientation="Vertical">
+                        <Grid ColumnDefinitions="*, *" Margin="18, 0">
+                            <Label Grid.Column="0" 
                             Text="Featured" 
                             FontSize="22" 
                             FontAttributes="Bold"
                             HorizontalOptions="StartAndExpand" />
-                        <Label Grid.Column="1"
+                            <Label Grid.Column="1"
                             Text="See all"
                             TextColor="#656565"
                             VerticalOptions="Center"
                             HorizontalOptions="EndAndExpand" 
                             FontSize="Small" />
-                    </Grid>
+                        </Grid>
 
-                    <Grid RowDefinitions="255" VerticalOptions="Start">
-                        <CollectionView
+                        <Grid RowDefinitions="255" VerticalOptions="Start">
+                            <CollectionView
                             ItemsSource="{ Binding Path=Products }"
                             ItemsLayout="HorizontalList"
                             SelectionMode="Single"
                             SelectionChanged="CollectionView_SelectionChanged">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
 
-                                    <Grid RowDefinitions="Auto, Auto" Padding="20, 2, 10, 0" HeightRequest="1">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup Name="CommonStates">
-                                                <VisualState Name="Normal" />
-                                                <VisualState Name="Selected">
-                                                    <VisualState.Setters>
-                                                        <Setter Property="BackgroundColor" Value="{ DynamicResource Key=BackgroundColor }" />
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
-                                        <Frame Grid.Row="0" CornerRadius="4" HasShadow="False" VerticalOptions="Start">
-                                            <Image 
-                                                Source="{ Binding Path=Cover }"
+                                        <Grid RowDefinitions="Auto, Auto" Padding="20, 2, 10, 0" HeightRequest="1">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="{ DynamicResource Key=BackgroundColor }" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Frame Grid.Row="0" CornerRadius="4" HasShadow="False" VerticalOptions="Start">
+                                                <Image 
+                                                Source="{ Binding Path=Cover.GetUrl }"
                                                 Aspect="AspectFill"
                                                 WidthRequest="160"
                                                 HeightRequest="200" />
-                                        </Frame>
+                                            </Frame>
 
-                                        <StackLayout Grid.Row="1" VerticalOptions="Start" Margin="0, 8">
-                                            <Label Text="{ Binding Path=Price, StringFormat='$ {0}' }" FontAttributes="Bold"/>
-                                            <Label Text="{ Binding Path=Title }" FontAttributes="Bold" />
-                                        </StackLayout>
-                                    </Grid>
+                                            <StackLayout Grid.Row="1" VerticalOptions="Start" Margin="0, 8">
+                                                <Label Text="{ Binding Path=Price, StringFormat='$ {0}' }" FontAttributes="Bold"/>
+                                                <Label Text="{ Binding Path=Title }" FontAttributes="Bold" />
+                                            </StackLayout>
+                                        </Grid>
 
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </Grid>
-                </StackLayout>
-                <!-- End Featired -->
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </StackLayout>
+                    <!-- End Featired -->
 
-                <!-- Best Sell -->
-                <StackLayout Grid.Row="3" Orientation="Vertical" Margin="0, 0, 0, 10">
-                    <Grid ColumnDefinitions="*, *" Margin="18, 0">
-                        <Label Grid.Column="0" 
+                    <!-- Best Sell -->
+                    <StackLayout Grid.Row="3" Orientation="Vertical" Margin="0, 0, 0, 10">
+                        <Grid ColumnDefinitions="*, *" Margin="18, 0">
+                            <Label Grid.Column="0" 
                                 Text="Best Sell" 
                                 FontSize="22" 
                                 FontAttributes="Bold"
                                 HorizontalOptions="StartAndExpand" />
-                        <Label Grid.Column="1"
+                            <Label Grid.Column="1"
                                 Text="See all"
                                 TextColor="#656565"
                                 VerticalOptions="Center"
                                 HorizontalOptions="EndAndExpand" 
                                 FontSize="Small" />
-                    </Grid>
+                        </Grid>
 
-                    <Grid RowDefinitions="255" VerticalOptions="Start">
-                        <CollectionView ItemsSource="{ Binding Path=Products }"
+                        <Grid RowDefinitions="255" VerticalOptions="Start">
+                            <CollectionView ItemsSource="{ Binding Path=Products }"
                                         ItemsLayout="HorizontalList"
                                         SelectionMode="Single"
                                         SelectionChanged="CollectionView_SelectionChanged">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid RowDefinitions="Auto, Auto" Padding="20, 2, 10, 0">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup Name="CommonStates">
-                                                <VisualState Name="Normal" />
-                                                <VisualState Name="Selected">
-                                                    <VisualState.Setters>
-                                                        <Setter Property="BackgroundColor" Value="{ DynamicResource Key=BackgroundColor }" />
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
-                                        <Frame Grid.Row="0"
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid RowDefinitions="Auto, Auto" Padding="20, 2, 10, 0">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="{ DynamicResource Key=BackgroundColor }" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Frame Grid.Row="0"
                                                 CornerRadius="4"
                                                 WidthRequest="160"
                                                 Padding="0"
                                                 HasShadow="False" >
-                                            <Image Source="{ Binding Path=Cover }"
+                                                <Image Source="{ Binding Path=Cover.GetUrl }"
                                                     Aspect="AspectFill"
                                                     WidthRequest="160"
                                                     HeightRequest="200" />
-                                        </Frame>
+                                            </Frame>
 
-                                        <StackLayout Grid.Row="1"  VerticalOptions="Start" Margin="0, 8">
-                                            <Label Text="{ Binding Path=Price, StringFormat='$ {0}' }" FontAttributes="Bold"/>
-                                            <Label Text="{ Binding Path=Title }" FontAttributes="Bold" />
-                                        </StackLayout>
-                                    </Grid>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </Grid>
-                </StackLayout>
-                <!-- End Best Sell -->
-            </Grid>
-        </ScrollView>
+                                            <StackLayout Grid.Row="1"  VerticalOptions="Start" Margin="0, 8">
+                                                <Label Text="{ Binding Path=Price, StringFormat='$ {0}' }" FontAttributes="Bold"/>
+                                                <Label Text="{ Binding Path=Title }" FontAttributes="Bold" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </StackLayout>
+                    <!-- End Best Sell -->
+                </Grid>
+            </ScrollView>
+        </RefreshView>
     </ContentPage.Content>
 
 </ContentPage>

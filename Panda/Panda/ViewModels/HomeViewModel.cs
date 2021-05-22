@@ -1,91 +1,62 @@
 ﻿using MvvmHelpers;
 using MvvmHelpers.Commands;
 using Panda.Models;
+using Panda.Services.HttpService;
+using Panda.Services.Shop;
+using Panda.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Panda.ViewModels
 {
-    public class HomeViewModel : BaseViewModel
+    public class HomeViewModel : CartService
     {
-        #region Products
-        public ObservableCollection<Product> Products { get; private set; }
-        private ImageSource cover = ImageSource.FromFile("photo3.jpg");
-        private List<ImageSource> images = new List<ImageSource>() 
+        private ObservableCollection<Product> products;
+        public ObservableCollection<Product> Products 
         { 
-            ImageSource.FromFile("photo_show7.jpg"),
-            ImageSource.FromFile("photo_show8.jpg"),
-            ImageSource.FromFile("photo_show9.jpg"),
-        };
-        private string description = "A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.";
-        #endregion
-
-        public IList<Category> Categories { get; private set; }
-
-        public ICommand SelectedCommand { get; private set; }
-        public HomeViewModel()
-        {
-            this.SelectedCommand = new AsyncCommand<Product>(async (Product product) => 
-            {
-                await Application.Current.MainPage.DisplayAlert("Command", product.Title, "Ok");
-            });
-
-            this.Categories = new List<Category>()
-            {
-                new Category() { Id = 1, Title = "Woman", Color = System.Drawing.Color.Blue, Image = ImageSource.FromFile("photo.jpg") },
-                new Category() { Id = 2, Title = "Man", Color = System.Drawing.Color.Red, Image = ImageSource.FromFile("photo2.jpg") },
-                new Category() { Id = 3, Title = "Kids", Color = System.Drawing.Color.Green, Image = ImageSource.FromFile("photo3.jpg") },
-                new Category() { Id = 4, Title = "Father", Color = System.Drawing.Color.Orange, Image = ImageSource.FromFile("photo4.jpg") }
-            };
-
-            this.LoadOroducts();
+            get => this.products; 
+            set => base.SetProperty<ObservableCollection<Product>>(ref this.products, value);
         }
 
-        private void LoadOroducts()
+        private IList<Category> categories;
+        public IList<Category> Categories 
+        {   
+            get => this.categories;
+            set => base.SetProperty<IList<Category>>(ref this.categories, value);
+        }
+
+        public ICommand SelectedCommand { get; private set; }
+        public ICommand RefreshCommand { get; private set; }
+
+        public HomeViewModel()
         {
-            this.Products = new ObservableCollection<Product>()
+            this.SelectedCommand = new Xamarin.Forms.Command<Product>(async (Product product) => 
             {
-                new Product() {
-                    Id = 1,
-                    Title = "Woman T-Shirt File",
-                    Price = 14.00d,
-                    SalePrice = 13d,
-                    Description = this.description,
-                    Cover = ImageSource.FromFile("photo3.jpg"),
-                    Images = this.images
-                },
-                new Product() {
-                    Id = 2,
-                    Title = "Black turtleneck top",
-                    Price = 84.00d,
-                    SalePrice = 72d,
-                    Description = this.description,
-                    Cover = ImageSource.FromFile("photo5.jpg"),
-                    Images = this.images
-                },
-                new Product() {
-                    Id = 3,
-                    Title = "Man T-Shirt",
-                    Price = 34.00d,
-                    SalePrice = 30d,
-                    Description = this.description,
-                    Cover = ImageSource.FromFile("photo2.jpg"),
-                    Images = this.images
-                },
-                new Product() {
-                    Id = 4,
-                    Title = "Blezer",
-                    Price = 94.00d,
-                    SalePrice = 84d,
-                    Description = this.description,
-                    Cover = ImageSource.FromFile("photo6.jpg"),
-                    Images = this.images
-                },
-            };
+                await Application.Current.MainPage.Navigation.PushAsync(new ShowView(product), true);
+            });
+
+            this.RefreshCommand = new Xamarin.Forms.Command(async () => await this.Refresh());
+        }
+
+        public async Task SingletoneRefresh()
+        {
+            if (this.Categories == null || this.Products == null)
+            {
+                await this.Refresh();
+            }
+        }
+
+        private async Task Refresh()
+        {
+            base.IsBusy = true;
+            this.Categories = await RestApi.GET<List<Category>>("/api/categories");
+            this.Products = await RestApi.GET<ObservableCollection<Product>>("/api/products");
+            base.IsBusy = false;
         }
     }
 }

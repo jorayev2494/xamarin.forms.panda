@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Panda.Views.CreateCardView">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, *" Padding="15, 0" BackgroundColor="{ StaticResource Key=BackgroundColor }">
+            <ScrollView Grid.Row="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Never">
+                <StackLayout Orientation="Vertical" Padding="0, 0, 0, 58" Spacing="20">
+                    <Label Text="Create Card" FontSize="35" />
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Code" FontSize="Body" />
+                        <Entry Text="{ Binding Path=Card.Code, Mode=TwoWay }" Placeholder="Code" TextColor="Black" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Expires end" FontSize="Body" />
+                        <Entry Text="{ Binding Path=Card.ExpiresEnd, Mode=TwoWay }" Placeholder="Expires end" TextColor="Black" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Security code" FontSize="Body" />
+                        <Entry Text="{ Binding Path=Card.SecurityCode, Mode=TwoWay }" Placeholder="Security code" TextColor="Black" MaxLength="3" Keyboard="Numeric" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Text="Type card" FontSize="Body" />
+                        <Entry Text="{ Binding Path=Card.TypeCard, Mode=TwoWay }" Placeholder="Type card38" TextColor="Black" Keyboard="Text" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+            <Button Grid.Row="1"
+                    Text="Add Address" 
+                    TextColor="White"
+                    TextTransform="None"
+                    VerticalOptions="End"
+                    Margin="0, 0, 0, 5"
+                    BackgroundColor="#659cf5"
+                    Command="{ Binding Path=CreateCardCommand }"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
